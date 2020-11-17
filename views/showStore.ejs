@@ -22,13 +22,13 @@
                         <p class="card-text" >
                             <span class="float-left">
                                     RM <span id="price"><%= product.price %> </span> 
-                                    <button class="btn minus-btn disabled" type="button">-</button>
+<!--                                     <button class="btn minus-btn disabled" type="button">-</button>
                                     <input type="text" id="quantity" value="1" disabled="disabled">
-                                    <button class="btn plus-btn" type="button">+</button>
+                                    <button class="btn plus-btn" type="button">+</button> -->
                             </span>
                         </p>
                         <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                                        <a href="/stores/<%= store.id %>/add/<%= product._id %>  " class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>  
                 </div>

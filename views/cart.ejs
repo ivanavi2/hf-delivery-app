@@ -1,0 +1,37 @@
+<%- include("./partials/header")  %> 
+
+<% if (cartItems === null || totalItems === 0) { %>
+    <p>Cart is empty</p>
+<% } else { %>
+    
+    <% cartItems.forEach(item => { %>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <img class="img-fluid rounded" src="<%= item.image %> " alt="">
+                    </div>
+                    <div class="col-lg-10">
+                        <h2 class="card-title"><%= item.name %> </h2>
+                       
+                        <p class="card-text" >
+                                    <span id="price">Item total:  RM<%= item.price %> </span> 
+                                    <div>
+                                        <span></span>
+                                        <a href="/stores/<%= cartStoreId %>/delete/<%= item.productId %> ">-</a> 
+                                        <span class="card-text" style="color:red"> Quantity: <%= item.qty %></span>
+                                        <a href="/stores/<%= cartStoreId %>/add/<%= item.productId %> ">+</a>  
+                                    </div>
+
+                        </p>
+                    </div>  
+                </div>
+            </div>
+        </div>     
+    <% }) %>
+
+    <h2>Total price: <%= totalPrice %> </h2>
+<% } %> 
+ 
+
+<%- include("./partials/footer")  %> 

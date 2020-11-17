@@ -19,10 +19,8 @@ const indexRoutes = require("./routes/index");
 const customerRoutes = require("./routes/customer");
 const cartRoutes = require("./routes/cart"); */
 
-//"mongodb://localhost/appdev_test"
-var dburl = "mongodb://localhost/appdev_test" || process.env.DATABASEURL;
 //Mongodb config
-mongoose.connect(dburl, 
+mongoose.connect(process.env.DATABASEURL ||  "mongodb://localhost/appdev_test", 
     {useNewUrlParser: true,
     useUnifiedTopology: true})
 .then(() => console.log("Connected to DB!"))    

@@ -1,6 +1,5 @@
 const express = require("express"); 
 const router = express.Router();
-const Customer = require("../models/customer");
 const Store = require("../models/store");
 const Cart = require("../models/cart");
 
@@ -35,11 +34,11 @@ router.get("/stores/:store_id/add/:product_id", async (req, res) => {
                 {_id: req.params.store_id},
                 {'products': {$elemMatch: {'_id': req.params.product_id}}});
         const product = foundStoreMatchingProduct.products[0];
-        console.log("product added to cart:" + product);
-        cart.add(product);
+/*         console.log("product added to cart:" + product);
+ */        cart.add(product);
         req.session.cart = cart;
-        console.log("SESSION CART:" + cart.items[0]);
-        console.log("SESSION CART ITEMS:" + req.session.cart.items);
+/*         console.log("SESSION CART:" + cart.items[0]);
+        console.log("SESSION CART ITEMS:" + req.session.cart.items); */
         res.redirect("/cart");
 
     }
@@ -59,7 +58,7 @@ router.get("/stores/:store_id/delete/:product_id", async (req, res) => {
               {_id: req.params.store_id},
               {'products': {$elemMatch: {'_id': req.params.product_id}}});
       const product = foundStoreMatchingProduct.products[0];
-      console.log("product removed by 1 in cart:" + product);
+/*       console.log("product removed by 1 in cart:" + product); */
       cart.remove(product);
       req.session.cart = cart;
       res.redirect("/cart");

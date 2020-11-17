@@ -19,8 +19,7 @@ const indexRoutes = require("./routes/index");
 const customerRoutes = require("./routes/customer");
 const cartRoutes = require("./routes/cart"); */
 
-
-//mongodb+srv://bizbuzbiz:ivantehteh1@cluster0.gumfa.mongodb.net/hf-delivery?retryWrites=true&w=majority
+//"mongodb://localhost/appdev_test"
 var dburl = "mongodb://localhost/appdev_test" || process.env.DATABASEURL;
 //Mongodb config
 mongoose.connect(dburl, 

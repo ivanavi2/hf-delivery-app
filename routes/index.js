@@ -28,7 +28,7 @@ router.post("/register", middlewareObj.checkRole, (req, res) => {
 
     UserModel.register(newUser, req.body.password, (err, user) => {
         if(err){
-            console.log(err);
+            req.flash("error", err.message)
             res.redirect("/register");
         }
         console.log("registering: " + user);    
@@ -36,7 +36,7 @@ router.post("/register", middlewareObj.checkRole, (req, res) => {
         //therefore, store session variable (session.currentUser) to store authenticated user
         req.session.currentUser = user;
         passport.authenticate(req.session.strategy)(req, res, () => {
-            console.log("authenticate after registering:" + req.user);
+            req.flash("Successfully registered!");
             res.redirect("/");
         })
     })
@@ -52,9 +52,11 @@ router.post("/login", middlewareObj.checkRole, (req, res, next) => {
     req.session.strategy = res.locals.role;
     passport.authenticate(res.locals.role, (err, user, info) => {
     if (err) { 
+        req.flash("error", err.message);
         return next(err); 
     }
     if (!user) { 
+        req.flash("error", "Login not successful");
         return res.redirect("/login"); 
     }
     req.logIn(user, function(err) {
@@ -63,6 +65,7 @@ router.post("/login", middlewareObj.checkRole, (req, res, next) => {
         //req.user somehow undefined for vendorLocal
         //therefore, store session variable (session.currentUser) to store authenticated user
         req.session.currentUser = user;
+        req.flash("success", "Succesfully logged in");
         return res.redirect("/");
     });})(req, res, next);
 })
@@ -71,8 +74,9 @@ router.post("/login", middlewareObj.checkRole, (req, res, next) => {
 //LOGOUT
 router.get("/logout", (req, res) => {
     //Destroy session variables since currentUser is stored in session
-    req.session.destroy();
     req.logOut();
+    req.flash("success", "Successfully logged out!");
+    req.session.destroy();
     res.redirect("/");
 })
 

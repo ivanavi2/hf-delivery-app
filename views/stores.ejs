@@ -1,0 +1,40 @@
+<%- include("./partials/header")  %> 
+
+<div class="container">
+    <form class="example" action="">
+        <input type="text" placeholder=" &#x1F50D; Selangor"  name="search">
+        <button type="submit" class="btn-dark " name="submitBtn" ><i class="fa fa-search">Find food near you</i></button>
+  </form> 
+</div>
+
+<div class="container">
+    <div class="row">
+    <% stores.forEach(store => { %>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+              <h6 class="card-header">
+                  <div class="float-left"><%= store.name %> </div>
+                  <div class="float-right">non-halal </div>
+              </h6>
+              <div class="card-body">
+                  <a href="/stores/<%= store._id %> "><img src="<%= store.image %> " class="img-thumbnail" alt="store image"></a>
+                  <p class="card-text" >
+                      <div class="float-left">
+                          From RMY 8 &nbsp;  46.77Km
+                      </div>
+                      <div class="float-right">
+                          &#9733; &#9733; &#9733; &#9733; &#9734;  4 &#47; 5
+                      </div>
+                  </p>
+              </div>
+              <div class="card-footer">               
+                  <button type="button" class="btn btn-outline-secondary">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+    <% }) %> 
+    </div>
+</div>
+
+ 
+<%- include("./partials/footer")  %> 

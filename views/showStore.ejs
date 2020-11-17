@@ -1,0 +1,41 @@
+<%- include("./partials/header")  %> 
+
+
+<div class="container">
+    <h6 class="mt-4 mb-3"> 
+        <p> non- halal</p>
+        <p> From 8RMY     &nbsp; 46.77kM</p>
+    </h6>
+    <h3 style="color:blueviolet"><%= store.name %> </h3>
+
+    <% store.products.forEach(product => { %>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img class="img-fluid rounded" src="<%= product.image %> " alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="card-title"><%= product.name %> </h2>
+                        <p class="card-text" style="color:grey"><%= product.description %> </p>
+                        <p class="card-text" style="color:red"> PRICE </p>
+                        <p class="card-text" >
+                            <span class="float-left">
+                                    RM <span id="price"><%= product.price %> </span> 
+                                    <button class="btn minus-btn disabled" type="button">-</button>
+                                    <input type="text" id="quantity" value="1" disabled="disabled">
+                                    <button class="btn plus-btn" type="button">+</button>
+                            </span>
+                        </p>
+                        <div class="float-right">
+                                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>     
+    <% }) %>
+
+</div>
+ 
+<%- include("./partials/footer")  %> 

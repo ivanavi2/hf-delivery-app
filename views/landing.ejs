@@ -1,0 +1,16 @@
+<%- include("./partials/header")  %> 
+    <p>index ejs</p>
+
+
+    <% if (currentUser && role==="vendorLocal") { %>
+        <p>Hello vendor<%= currentUser._id %> </p>
+        <a href="/vendor/<%= currentUser._id %> ">Vendor page</a>
+    <% } else if (currentUser && role==="customerLocal") {%>
+        <p>Hello customer<%= currentUser._id %> </p>
+        <a href="/customer/<%= currentUser._id %> ">Customer page</a>
+    <%} else {%>
+        <p>Hello</p>
+    <%} %>
+                
+ 
+<%- include("./partials/footer")  %> 

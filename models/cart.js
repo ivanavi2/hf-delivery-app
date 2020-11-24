@@ -1,7 +1,7 @@
 module.exports = function Cart(cart) {
     this.items = cart.items || [];
-    this.totalItems = cart.totalItems || 0;
-    this.totalPrice = cart.totalPrice || 0;
+    this.totalItems = cart.totalItems || 0.00;
+    this.totalPrice = cart.totalPrice || 0.00;
     console.log("cart store id in function" + cart.storeId);
 
     this.add = function(item) {
@@ -11,7 +11,7 @@ module.exports = function Cart(cart) {
         if (itemIndex > -1) {
             // if product exists in the cart, update the quantity
             this.items[itemIndex].qty++;
-            this.items[itemIndex].price = this.items[itemIndex].qty * item.price;
+            this.items[itemIndex].price = (this.items[itemIndex].qty * item.price).toFixed(2);
             this.totalItems++;
             this.totalPrice += item.price;
           } else {

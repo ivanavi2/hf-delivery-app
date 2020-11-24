@@ -2,39 +2,38 @@
 
 
 <div class="container">
-    <h6 class="mt-4 mb-3"> 
-        <p> non- halal</p>
-        <p> From 8RMY     &nbsp; 46.77kM</p>
+    <div class="hero-text mt-5">
+        <h1 id="store-name"><%= store.name %> </h1>
+    </div>
+    <h6 style="font-size: 0.8rem;"> 
+        <p class="m-0 pl-1">non-halal</p>
+        <p class="m-0 pl-1">From RM8 - 46.77km</p>
     </h6>
-    <h3 style="color:blueviolet"><%= store.name %> </h3>
-
-    <% store.products.forEach(product => { %>
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <img class="img-fluid rounded" src="<%= product.image %> " alt="">
-                    </div>
-                    <div class="col-lg-6">
-                        <h2 class="card-title"><%= product.name %> </h2>
-                        <p class="card-text" style="color:grey"><%= product.description %> </p>
-                        <p class="card-text" style="color:red"> PRICE </p>
+    
+    <div class="row">
+        <% store.products.forEach(product => { %>
+            <div class="col-lg-4 col-md-6 mb-4 px-0">
+                <div class="card"> 
+                    <img src="<%= product.image %> " class="card-img-top" alt="store image">
+                    <div class="card-body p-1">
                         <p class="card-text" >
-                            <span class="float-left">
-                                    RM <span id="price"><%= product.price %> </span> 
-<!--                                     <button class="btn minus-btn disabled" type="button">-</button>
-                                    <input type="text" id="quantity" value="1" disabled="disabled">
-                                    <button class="btn plus-btn" type="button">+</button> -->
-                            </span>
+                            <h5 class="card-title"><%= product.name %></h5>
+                            <div class="float-left">
+                                <p class="mb-0 card-description">RM <%= product.price %> </p>
+                                <div>
+                                    <p class="card-description" style="color: #ee6f57; opacity: 1;"><%= product.description %> </p>
+                                </div>
+                            </div>
                         </p>
-                        <div class="float-right">
-                                        <a href="/stores/<%= store.id %>/add/<%= product._id %>  " class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>  
+                    </div>
+                    <div class="card-footer p-2">               
+                        <a href="/stores/<%= store.id %>/add/<%= product._id %>  " class="custom-btn m-0">Add to Cart</a>
+                    </div>
                 </div>
             </div>
-        </div>     
-    <% }) %>
+        <% }) %>
+    </div>
+
 
 </div>
  

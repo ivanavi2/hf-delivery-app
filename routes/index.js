@@ -24,7 +24,7 @@ router.post("/register", middlewareObj.checkRole, (req, res) => {
     //store session variable (session.strategy) to store role -> customerLocal/vendorLocal
     req.session.strategy = res.locals.role;
     var UserModel = req.session.strategy === ("customerLocal") ? Customer : Vendor;
-    var newUser = new UserModel({username: req.body.username});
+    var newUser = new UserModel({username: req.body.username, phone: req.body.phone, email: req.body.email});
 
     UserModel.register(newUser, req.body.password, (err, user) => {
         if(err){

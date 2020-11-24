@@ -1,34 +1,39 @@
 <%- include("./partials/header")  %> 
 
-<div class="container">
+<div class="container-fluid p-3" style="background-color: #f9f7f7;">
+    <div class="hero-text mb-3">
+        <h1 class="hero-text">Available stores here!</h1>
+    </div>
     <form class="example" action="">
-        <input type="text" placeholder=" &#x1F50D; Selangor"  name="search">
-        <button type="submit" class="btn-dark " name="submitBtn" ><i class="fa fa-search">Find food near you</i></button>
+        <input type="text" placeholder=" Selangor"  name="search" style="width: 215px;">
+        <div>
+            <button type="button" class="custom-btn my-1" name="submitBtn" ><i class="fa fa-search" style="color: #f9f7f7;"></i>Find food near you</button>
+        </div>
   </form> 
 </div>
 
-<div class="container">
+<div class="container-fluid mt-3">
     <div class="row">
     <% stores.forEach(store => { %>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100">
-              <h6 class="card-header">
-                  <div class="float-left"><%= store.name %> </div>
-                  <div class="float-right">non-halal </div>
-              </h6>
-              <div class="card-body">
-                  <a href="/stores/<%= store._id %> "><img src="<%= store.image %> " class="img-thumbnail" alt="store image"></a>
-                  <p class="card-text" >
-                      <div class="float-left">
-                          From RMY 8 &nbsp;  46.77Km
-                      </div>
-                      <div class="float-right">
-                          &#9733; &#9733; &#9733; &#9733; &#9734;  4 &#47; 5
-                      </div>
-                  </p>
+        <div class="col-lg-3 mb-4">
+            <div class="card"> 
+                <a href="/stores/<%= store._id %> "><img src="<%= store.image %> " class="card-img-top" alt="store image"></a>
+                <div class="card-body p-1">
+                    <p class="card-text" >
+                        <h5 class="card-title"><%= store.name %></h5>
+                        <div class="float-left">
+                            <p class="mb-0 card-description">From RM8</p>
+                            <div>
+                                <p class="card-description">40km</p>
+                            </div>
+                        </div>
+                        <div class="float-right card-description">
+                            &#9733; &#9733; &#9733; &#9733; &#9734;  4 &#47; 5
+                        </div>
+                    </p>
               </div>
-              <div class="card-footer">               
-                <a href="/stores/<%= store._id %> "><button type="button" class="btn btn-outline-secondary">View</button></a>
+              <div class="card-footer p-2">               
+                <a href="/stores/<%= store._id %> "><button type="button" class="custom-btn m-0">View</button></a>
               </div>
             </div>
           </div>

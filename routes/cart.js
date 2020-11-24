@@ -15,7 +15,7 @@ router.get("/cart", (req, res) => {
         title: 'NodeJS Shopping Cart',
         cartStoreId: req.session.cartStoreId,
         cartItems: cart.getItems(),
-        totalPrice: cart.totalPrice,
+        totalPrice: cart.totalPrice.toFixed(2),
         totalItems: cart.totalItems,
       });
 })

@@ -1,16 +1,33 @@
 <%- include("./partials/header")  %> 
-    <p>index ejs</p>
 
-
-    <% if (currentUser && role==="vendorLocal") { %>
-        <p>Hello vendor<%= currentUser._id %> </p>
-        <a href="/vendor/<%= currentUser._id %> ">Vendor page</a>
-    <% } else if (currentUser && role==="customerLocal") {%>
-        <p>Hello customer<%= currentUser._id %> </p>
-        <a href="/customer/<%= currentUser._id %> ">Customer page</a>
-    <%} else {%>
-        <p>Hello</p>
-    <%} %>
+<div class="container-fluid">
+    <main class="jumbotron pb-0" id="hero">
+        <div class="row">
+            <div class="col-md-4 hero-svg">
+                <img src="img/hero.svg" alt="">
+            </div>
+            <div class="col-md-8 p-4 hero-text">
+                <h1>Support Local!</h1>
+                <p class="mt-3">Help support local sellers during Covid-19 ordering food from them while you get to enjoy good food at a cheaper rate</p>
+            </div>
+        </div>
+    </main>
+    <section>
+        <div class="row">
+            <div class="col-md-6 p-4">
+                <h1 class="section-header">Explore our stores</h1>
+                <p class="section-text p-1">Explore our partnered stores selling wide varieties of local foods</p>
+                <div>
+                    <a href="/stores"><button class="custom-btn mb-2" type="submit">View</button></a>             
+                </div>
+            </div>
+            <div class="col-md-4 d-none d-md-block food-section">
+                <img src="img/food.jpg" alt="" id="food1">
+                <img src="img/food2.jpg" alt="" id="food2">
+            </div>
+        </div>
+    </section>
+</div>
                 
  
 <%- include("./partials/footer")  %> 

@@ -36,7 +36,7 @@ router.post("/register", middlewareObj.checkRole, (req, res) => {
         //therefore, store session variable (session.currentUser) to store authenticated user
         req.session.currentUser = user;
         passport.authenticate(req.session.strategy)(req, res, () => {
-            req.flash("Successfully registered!");
+            req.flash("success", "Successfully registered!");
             res.redirect("/");
         })
     })

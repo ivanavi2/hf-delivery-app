@@ -1,0 +1,32 @@
+<%- include("./partials/header")  %> 
+
+<% if (customerOrders === null) { %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+        <h1 class="hero-text"><i class="fas fa-shopping-cart m-2"></i>No orders yet!</h1>  
+    </div>
+
+<% } else { %>
+
+    <% customerOrders.forEach(order => { %>                            
+        <% var orderTotalPrice = parseFloat(order.totalPrice).toFixed(2);%>    
+
+        <div class="card" id="cart-card">
+            <div class="card-body">
+                <h2 class="card-title mb-0"><%= order.store.name %> </h2> 
+                <p class="card-text order-time ">Ordered at <%= order.createdAt %> </p>  
+                <% var i = 1 %> 
+                <% order.items.forEach(item => { %>
+                    <% var itemTotal = parseFloat(item.price).toFixed(2);%>    
+                    <p class="card-text m-0 order-text"><span><%= i %>. </span><%= item.name %> x<%= item.qty %> </p>
+                    <p class="card-text order-text">Item total: RM<%= itemTotal %> </p>
+                    <% i++ %> 
+                <% }) %> 
+                <p class="class-text m-0 order-text-big"><i class="fas fa-shopping-basket pr-1"></i>Item total quantity: <%= order.totalQty %> </p>
+                <p class="class-text order-text-big"><i class="fas fa-file-invoice-dollar pl-1"></i> Order total: RM<%= orderTotalPrice %> </p>
+            </div>
+        </div>     
+    <% }) %>
+<% } %> 
+ 
+
+<%- include("./partials/footer")  %> 

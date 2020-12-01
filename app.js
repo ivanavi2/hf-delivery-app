@@ -15,15 +15,17 @@ const middlewareObj = require('./middleware');
 const storeRoutes = require("./routes/store");
 const indexRoutes = require("./routes/index");
 const cartRoutes = require("./routes/cart");
+const orderRoutes = require("./routes/order");
+const order = require('./models/order');
 /* const storeRoutes = require("./routes/store"); */
 /* const vendorRoutes = require("./routes/vendor");
 const customerRoutes = require("./routes/customer");
 const cartRoutes = require("./routes/cart"); */
 
-//mongodb://localhost/appdev_test" || process.env.DATABASEURL
+//"mongodb://localhost/appdev_test" || process.env.DATABASEURL
 //process.env.DATABASEURL || "mongodb://localhost/appdev_test"  
 //Mongodb config
-mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/appdev_test", 
+mongoose.connect("mongodb://localhost/appdev_test" || process.env.DATABASEURLc, 
     {useNewUrlParser: true,
     useUnifiedTopology: true})
 .then(() => console.log("Connected to DB!"))    
@@ -62,6 +64,7 @@ app.use((req, res, next) => {
 app.use(indexRoutes);
 app.use(storeRoutes);
 app.use(cartRoutes);
+app.use(orderRoutes);
 /* app.use(vendorRoutes);
 app.use(customerRoutes);
 app.use(cartRoutes);

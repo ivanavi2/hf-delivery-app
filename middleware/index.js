@@ -12,4 +12,12 @@ middlewareObj.checkRole = function checkRole(req, res, next){
     next();
 }
 
+middlewareObj.isLoggedInCustomer = function isLoggedInCustomer(req, res, next) {
+    if(req.isAuthenticated() && req.session.strategy === "customerLocal"){
+        return next();
+    }
+    req.flash("error", "Please login first!");
+    res.redirect("/login");
+}
+
 module.exports = middlewareObj;

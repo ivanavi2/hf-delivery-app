@@ -220,3 +220,15 @@ a.navbar-brand{
 #increment:hover, #decrement:hover{
     color: #112d4e !important;
 }
+
+.order-time {
+    font-size: 0.75rem;
+}
+
+.order-text {
+    font-size: 0.9rem;
+}
+
+.order-text-big {
+    font-size: 1.1rem;
+}

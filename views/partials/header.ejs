@@ -33,7 +33,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="# ">Notifications</a>
                     </li>
-                <% } else { %>
+                <% } else if (currentUser && role==="customerLocal") { %>
                     <li class="nav-item">
                         <a class="nav-link" href="/stores">Stores</a>
                     </li>
@@ -47,7 +47,23 @@
                         <a class="nav-link" href="Rate.html">Notifications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Rate.html">Orders</a>
+                        <a class="nav-link" href="/orders/<%= currentUser._id %> ">Orders</a>
+                    </li>  
+                <%} else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/stores">Stores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Chat.html">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Rate.html">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Orders</a>
                     </li>  
                 <% } %> 
             </ul>

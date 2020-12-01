@@ -2,7 +2,7 @@ module.exports = function Cart(cart) {
     this.items = cart.items || [];
     this.totalItems = cart.totalItems || 0.00;
     this.totalPrice = cart.totalPrice || 0.00;
-    console.log("cart store id in function" + cart.storeId);
+    //console.log("cart store id in function" + cart.storeId);
 
     this.add = function(item) {
 

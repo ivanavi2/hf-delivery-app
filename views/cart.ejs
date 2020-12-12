@@ -10,11 +10,11 @@
     <% cartItems.forEach(item => { %>                            
         <% var itemPrice = parseFloat(item.price).toFixed(2);%>    
 
-        <div class="card" id="cart-card">
+        <div class="" id="cart-card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2">
-                        <img class="img-fluid rounded" id="cart-item-img" c src="<%= item.image %> " alt="">
+                        <img class="img-fluid" id="cart-item-img" c src="<%= item.image %> " alt="">
                     </div>
                     <div class="col-lg-10">
                         <h2 class="card-title"><%= item.name %> </h2>           
@@ -33,9 +33,13 @@
     <% }) %>
 
     <h2 class="m-4">Total price: RM<%= totalPrice %> </h2>
-    <form action="/checkout" method="POST">
-        <button class="custom-btn ml-4">Checkout!</button>
-    </form>
+    <div class="row">
+        <form action="/checkout" method="GET">
+            <button class="custom-btn ml-4">Checkout!</button>
+        </form>
+        <a href="/stores/<%= cartStoreId %> "><button class="custom-btn ml-2">Back to store</button></a>
+    </div>
+  
 <% } %> 
  
 

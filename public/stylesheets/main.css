@@ -55,12 +55,16 @@ a.logo {
     margin: auto;
 }
 
-.logo-header:hover, a.logo:hover {
-    color: #112d4e;
+.logo-header a:hover {
+    color: #112d4e !important ;
 }
 
 .logo i {
     color: #112d4e;
+}
+
+.custom-btn i {
+    color: #f9f7f7;
 }
 
 .custom-btn {
@@ -211,6 +215,9 @@ a.navbar-brand{
 #cart-item-img {
     object-fit: cover;
     height: 200px !important;
+    width: 100%;
+    -webkit-box-shadow: 4px 4px 0px 0px #112d4e, 8px 8px 7px 0px rgba(19,39,67,0.26); 
+    box-shadow: 4px 4px 0px 0px #112d4e, 8px 8px 7px 0px rgba(19,39,67,0.26);
 }
 
 #increment, #decrement{
@@ -231,4 +238,31 @@ a.navbar-brand{
 
 .order-text-big {
     font-size: 1.1rem;
+}
+
+.chat-list {
+    border: 2px solid #f9f7f7;
+}
+
+.chat-header {
+    background-color: #112d4e;
+    
+}
+
+.chat-header h4, .chat-header h4 i {
+    color: #f9f7f7;
+}
+
+.chat-body {
+    height: 500px;
+    background-color: #f9f7f7;
+    overflow-y: scroll;
+}
+
+.chat-message {
+    width: 200px;
+}
+
+.payment-option {
+    border: 1px solid #dbe2ef;
 }

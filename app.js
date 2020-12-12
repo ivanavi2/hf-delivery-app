@@ -16,20 +16,27 @@ const storeRoutes = require("./routes/store");
 const indexRoutes = require("./routes/index");
 const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/order");
-const order = require('./models/order');
-/* const storeRoutes = require("./routes/store"); */
-/* const vendorRoutes = require("./routes/vendor");
+const chatRoutes = require("./routes/chat");
+const vendorRoutes = require("./routes/vendor");
+/*
 const customerRoutes = require("./routes/customer");
 const cartRoutes = require("./routes/cart"); */
 
 //"mongodb://localhost/appdev_test" || process.env.DATABASEURL
 //process.env.DATABASEURL || "mongodb://localhost/appdev_test"  
 //Mongodb config
-mongoose.connect("mongodb://localhost/appdev_test" || process.env.DATABASEURLc, 
+//mongodb+srv://bizbuzbiz:ivantehteh1@cluster0.gumfa.mongodb.net/hf-delivery?retryWrites=true&w=majority
+mongoose.connect("mongodb://localhost/appdev_test" || process.env.DATABASEURL, 
     {useNewUrlParser: true,
     useUnifiedTopology: true})
 .then(() => console.log("Connected to DB!"))    
 .catch((error) => console.log(error.message));
+
+/* mongoose.connect("mongodb+srv://bizbuzbiz:ivantehteh1@cluster0.gumfa.mongodb.net/hf-delivery?retryWrites=true&w=majority", 
+    {useNewUrlParser: true,
+    useUnifiedTopology: true})
+.then(() => console.log("Connected to DB!"))    
+.catch((error) => console.log(error.message)); */
 
 //Other config
 app.use(methodOverride("_method"));
@@ -65,6 +72,8 @@ app.use(indexRoutes);
 app.use(storeRoutes);
 app.use(cartRoutes);
 app.use(orderRoutes);
+app.use(chatRoutes);
+app.use(vendorRoutes);
 /* app.use(vendorRoutes);
 app.use(customerRoutes);
 app.use(cartRoutes);

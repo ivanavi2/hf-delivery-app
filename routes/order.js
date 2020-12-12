@@ -7,6 +7,23 @@ const middlewareObj = require('../middleware');
 
 
 ///////////////////CHECKOUT FROM CART////////////////////////////
+router.get("/checkout", async (req, res) => {
+
+  var cart = new Cart(req.session.cart);
+
+  var cartStore = await Store.findById(req.session.cartStoreId);
+
+  res.render('checkout', {
+    title: 'NodeJS Shopping Cart',
+    cartStore: cartStore,
+    cartStoreId: req.session.cartStoreId,
+    cartItems: cart.getItems(),
+    totalPrice: cart.totalPrice.toFixed(2),
+    totalItems: cart.totalItems,
+  });
+
+})
+
 router.post("/checkout", async (req, res) => {
     if(!req.session.cart){
       return res.redirect("back");
@@ -55,5 +72,5 @@ router.get("/orders/:id", (req, res) => {
   
   
   
-  module.exports = router;
+module.exports = router;
   

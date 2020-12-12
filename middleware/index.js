@@ -20,4 +20,12 @@ middlewareObj.isLoggedInCustomer = function isLoggedInCustomer(req, res, next) {
     res.redirect("/login");
 }
 
+middlewareObj.isLoggedIn = function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated() || req.session.currentUser){
+        return next();
+    }
+    req.flash("error", "Please login first!");
+    res.redirect("/login");
+}
+
 module.exports = middlewareObj;

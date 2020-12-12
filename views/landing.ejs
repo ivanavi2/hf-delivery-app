@@ -15,11 +15,19 @@
     <section>
         <div class="row">
             <div class="col-md-6 p-4">
-                <h1 class="section-header">Explore our stores</h1>
-                <p class="section-text p-1">Explore our partnered stores selling wide varieties of local foods</p>
-                <div>
-                    <a href="/stores"><button class="custom-btn mb-2" type="submit">View</button></a>             
-                </div>
+                <% if (role === "vendorLocal") { %>
+                    <h1 class="section-header">Manage your store</h1>
+                    <p class="section-text p-1">Add, edit and delete new items for your store here!</p>
+                    <div>
+                        <a href="/vendor/<%= currentUser._id %> "><button class="custom-btn mb-2" type="submit">Go</button></a>             
+                    </div>
+                <% } else { %>         
+                    <h1 class="section-header">Explore our stores</h1>
+                    <p class="section-text p-1">Explore our partnered stores selling wide varieties of local foods</p>
+                    <div>
+                        <a href="/stores"><button class="custom-btn mb-2" type="submit">View</button></a>             
+                    </div>
+                <% } %>
             </div>
             <div class="col-md-4 d-none d-md-block food-section">
                 <img src="img/food.jpg" alt="" id="food1">

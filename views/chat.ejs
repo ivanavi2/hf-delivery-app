@@ -1,0 +1,42 @@
+<%- include("./partials/header")  %> 
+
+    <div class="container-fluid p-3">
+        <div class="hero-text mb-3">
+            <h1 class="">Chat</h1>
+        </div>  
+
+        <div class="row ">            
+            <div class="col-md-4 p-2 chat-list">
+                <% if (role === "customerLocal") { %>
+                    <h4 class="">Restaurant Name</h4>
+                    <% custChats.forEach(chat => { %>
+                        <div class="chat-list-store d-flex justify-content-between my-4">
+                            <span><i class="fas fa-user p-1"></i><%= chat.store.name %> </span>
+                            <form action="/chat/<%= chat.store._id %>/<%= chat.customer._id %>" method="GET">
+                                <button type="submit" class="custom-btn d-inline m-0">Message</button>
+                            </form>
+                        </div>                 
+                    <% }) %>                 
+                <% } else { %>
+                    <h4 class="">Customers</h4>
+                    <% vendorChats.forEach(chat => { %>
+                        <div class="chat-list-store d-flex justify-content-between my-4">
+                            <span><i class="fas fa-user p-1"></i><%= chat.customer.username %> </span>
+                            <form action="/chat/<%= chat.store._id %>/<%= chat.customer._id %>" method="GET">
+                                <button type="submit" class="custom-btn d-inline m-0">Message</button>
+                            </form>
+                        </div>                 
+                    <% }) %>     
+                <% } %>            
+
+            </div>
+            <div class="col-md-6 chat-container d-none d-md-block">
+                <img src="img/chat.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+
+    
+ 
+<%- include("./partials/footer")  %> 

@@ -1,0 +1,58 @@
+<%- include("./partials/header")  %> 
+
+<% if (!vendor.store) { %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+        <a href="/vendor/<%= currentUser._id %>/store"><h1 class="hero-text">Click Here to set up your store!</h1></a> 
+    </div>
+
+<% } else { %>
+    <div class="container">
+<!--     <a href="#">Manage store</a> -->
+        <div class="hero-text mt-5">
+            <h1 id="store-name" class=""><%= vendor.store.name %> </h1>            
+        </div>
+<!--         <img src="<%= vendor.store.image %> " alt="" style="width: 100px;" class=""> -->
+        <a href="/vendor/<%= currentUser._id %>/store/<%= vendor.store._id %>">
+            <button class="custom-btn mb-1">Add new item</button>
+        </a>
+        
+<!--         <h1><%= (Array.isArray(vendor.store.products))  %></h1>
+        <h1><%=  ((vendor.store.products).length) %></h1 -->
+
+        <!-- check isArray && array.length is not zero -->
+        <% if (Array.isArray(vendor.store.products) && (vendor.store.products).length) { %>
+            <div class="row">
+                <% vendor.store.products.forEach(product => { %>
+                    <div class="col-lg-4 col-md-6 mb-4 px-0">
+                        <div class="card">                        
+                            <img src="<%= product.image %>" alt="" class="card-img-top">
+                            <div class="card-body p-1">
+                                <p class="card-text">
+                                    <h5 class="card-title"><%= product.name %> </h5>
+                                    <p class="mb-0 card-description">RM<%= product.price %> </p>
+                                    <p class="card-description" style="color: #ee6f57; "><%= product.description %></p>
+                                </p>
+                            </div>
+
+                            <div class="card-footer p-1 d-flex">
+                                    <form action="/vendor/<%= currentUser._id %>/store/<%= vendor.store._id %>/<%= product._id %>?_method=DELETE" method="POST">
+                                        <button class="custom-btn d-inline m-1 px-2"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                    <form action="/vendor/<%= currentUser._id %>/store/<%= vendor.store._id %>/<%= product._id %>" method="GET">
+                                        <button class="custom-btn d-inline m-1 px-2"><i class="fas fa-edit"></i></button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <% }) %>
+            </div>
+            
+        <% } %>
+    </div>
+    
+<% } %>
+ 
+
+
+<%- include("./partials/footer")  %> 

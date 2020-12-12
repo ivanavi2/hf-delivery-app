@@ -75,6 +75,7 @@ router.post("/login", middlewareObj.checkRole, (req, res, next) => {
 router.get("/logout", (req, res) => {
     //Destroy session variables since currentUser is stored in session
     req.logOut();
+    //cant show flash message after logout
     req.flash("success", "Successfully logged out!");
     req.session.destroy();
     res.redirect("/");

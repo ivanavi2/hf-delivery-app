@@ -1,0 +1,52 @@
+<%- include("./partials/header")  %> 
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="" id="cart-card">
+                <div class="card-body">
+                    <h1>Check out</h1>
+                    <div class="row justify-content-between">
+                        <div class="col-md-6 p-0">
+                            <img src="<%= cartStore.image %> " alt="" id="cart-item-img">
+                        </div>
+                        <div class="col-md-5">
+                            <h5>Restaurant: <%= cartStore.name %> </h5>
+                            <p>Food details</p>
+                            <% cartItems.forEach(item => { %>
+                             <p><%=item.name%> x<%= item.qty %> </p>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+
+        </div>
+        <div class="col-md-6">   
+            <h4>Payment option</h4>
+            <div class="payment-option p-3">
+                <input type="radio" name="payment" id="" value="creditcard">
+                <label for="creditcard">Credit Card</label><br>
+                <input type="radio" name="payment" id="" value="onlinebanking">
+                <label for="onlinebanking">Online Banking</label><br>
+                <input type="radio" name="payment" id="" value="cash">
+                <label for="cash">Cash</label><br>
+            </div>
+            <div class="total-payment mt-3">
+                <h4>Total Payment</h4>
+                <p>RM<%= totalPrice %> </p>
+            </div>
+            <form action="/checkout" method="POST">
+                <button class="custom-btn">Place order</button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+ 
+
+<%- include("./partials/footer")  %> 

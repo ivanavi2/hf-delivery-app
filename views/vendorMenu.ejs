@@ -9,7 +9,7 @@
     <div class="container">
 <!--     <a href="#">Manage store</a> -->
         <div class="hero-text mt-5">
-            <h1 id="store-name" class=""><%= vendor.store.name %> </h1>            
+            <a href="/vendor/<%= currentUser._id %>/store/<%= vendor.store._id %>/editstore "><h1 id="store-name" class=""><%= vendor.store.name %> </h1> </a>           
         </div>
 <!--         <img src="<%= vendor.store.image %> " alt="" style="width: 100px;" class=""> -->
         <a href="/vendor/<%= currentUser._id %>/store/<%= vendor.store._id %>">
@@ -17,7 +17,7 @@
         </a>
         
 <!--         <h1><%= (Array.isArray(vendor.store.products))  %></h1>
-        <h1><%=  ((vendor.store.products).length) %></h1 -->
+        <h1><%=  ((vendor.store.products).length) %></h1  -->
 
         <!-- check isArray && array.length is not zero -->
         <% if (Array.isArray(vendor.store.products) && (vendor.store.products).length) { %>
@@ -48,7 +48,9 @@
                 <% }) %>
             </div>
             
-        <% } %>
+        <% } else { %>
+            <h1 class="text-align-center">Store is empty</h1>
+        <% } %> 
     </div>
     
 <% } %>

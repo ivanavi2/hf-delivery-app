@@ -44,9 +44,36 @@ router.post("/vendor/:id/store", (req, res) => {
 
 //EDIT STORE ROUTE
 ///////////////////
+router.get("/vendor/:id/store/:store_id/editstore", (req, res) => {
+    Store.findById(req.params.store_id, (err, foundStore) => {
+        if(err){
+            console.log(err);
+            res.redirect("back");
+        }
+        else{
+            res.render("editStore", {foundStore: foundStore});
+        }
+
+    })
+})
+
+router.post("/vendor/:id/store/:store_id/editstore", async (req, res) => {
+    var store = await Store.findById(req.params.store_id);
+    store.update({name: req.body.name, image: req.body.image}, (err, updatedStore) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect("/vendor/" + req.params.id);
+        }
+    })
+})
+
 
 //PRODUCTS//
 //PRODUCT CREATE FORM 
+
+//should be /vendor/:id/store/:store_id/product (RESTAPI)
 router.get("/vendor/:id/store/:store_id", (req, res) => {
     Store.findById(req.params.store_id, (err, foundStore) => {
         if(err){

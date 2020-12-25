@@ -7,7 +7,7 @@ const LocalStrategy = require('passport-local');
 const methodOverride = require("method-override");
 const flash = require('connect-flash');
 
-
+const Order = require("./models/order");
 const Customer = require("./models/customer");
 const Vendor = require("./models/vendor");
 const middlewareObj = require('./middleware');
@@ -78,6 +78,8 @@ app.use(vendorRoutes);
 app.use(customerRoutes);
 app.use(cartRoutes);
  */
+
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Listening to hfd_copy");

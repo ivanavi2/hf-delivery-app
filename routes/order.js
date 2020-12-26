@@ -4,6 +4,8 @@ const Store = require("../models/store");
 const Cart = require("../models/cart");
 const Order = require("../models/order");
 const middlewareObj = require('../middleware');
+const { collection } = require("../models/store");
+const order = require("../models/order");
 
 
 ///////////////////CHECKOUT FROM CART////////////////////////////
@@ -21,7 +23,6 @@ router.get("/checkout", async (req, res) => {
     totalPrice: cart.totalPrice.toFixed(2),
     totalItems: cart.totalItems,
   });
-
 })
 
 router.post("/checkout", async (req, res) => {
@@ -71,6 +72,23 @@ router.get("/orders/:id", (req, res) => {
 
 })
   
+
+router.get('/viewCustomerOrder', (req, res)=>
+{
+  Order.find({}, (err, takeOrder) =>
+   {
+            if(err){
+                console.log(err);
+                //res.redirect("/");
+            }
+            else{
+                res.render("viewCustomerOrder", {orders: takeOrder});
+            }
+   })
+})
+
+
+
   
   
 module.exports = router;

@@ -29,6 +29,11 @@ router.get("/stores/:store_id/add/:product_id", middlewareObj.isLoggedInCustomer
     if(!req.session.cart){
         req.session.cartStoreId = req.params.store_id; 
     }
+    else{
+      if(req.session.cartStoreId = req.params.store_id);
+      req.flash("error", "Please complete current order first before ordering from another store!");
+      res.redirect("/cart");
+    }
 
     try {
         let foundStoreMatchingProduct = await Store.findOne(

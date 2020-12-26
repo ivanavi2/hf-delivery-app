@@ -15,7 +15,7 @@
                 <div class="row justify-content-between">
                     <div class="col-md-6 p-0">
                         <h2 class="card-title mb-0"><%= order.store.name %> </h2> 
-                        <p class="card-text order-time ">Ordered at <%= order.createdAt %> </p>  
+                        <p class="card-text order-time ">Ordered at <strong><%= order.createdAt %></strong> </p>  
                     </div>
                     <div class="col-md-2 p-0">
                         <a href="/chat/<%= order.store._id %>/<%= currentUser._id %>  ">

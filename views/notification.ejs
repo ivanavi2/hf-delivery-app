@@ -1,0 +1,70 @@
+<%- include("./partials/header")  %> 
+
+<div class="container-fluid p-3">
+    <div class="hero-text mb-5">
+        <h1 class="">Order confirmation</h1>
+    </div>  
+
+    <div class="container table-responsive-md">
+        <table class="notification-table table-hover table">
+            <tr>
+                <th>Order ID</th>
+                <th>Restaurant Name</th>
+                <th>Food list</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <% customerOrders.forEach(order => { %>
+            <tr>
+                <td><%= order._id %></td>
+                <td><%= order.store.name %> </td>
+                <td>
+                    <% var i = 1; %> 
+                    <% order.items.forEach(item => { %>
+                        <p><%= i %>. <%= item.name %> x<%= item.qty %></p>
+                        <% i++ %> 
+                    <% }) %>
+                </td>
+                <td>
+                    <% if (order.isConfirmed === true) { %>
+                        <p>Your order is confirmed</p> 
+                    <% } else if (order.isCancelled === true) { %>
+                        <p>Your order is cancelled</p>
+                    <% } else { %>
+                        <p>Your order is pending confirmation</p>
+                    <% } %>
+                </td>
+                <td>
+                    <form action="/notification/<%= order._id %>/cancel " method="POST">
+                        <!--Disable cancel order button is order is already cancelled-->
+                        <% if (order.isCancelled === true) { %>
+                            <button class="custom-btn py-1 px-2" disabled>Cancel order</button>
+                        <% } else { %>
+                        <button onclick="return cancelConfirmation()" class="custom-btn py-1 px-2">Cancel order</button>
+                        <% } %>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+
+        </table>
+    </div>
+
+</div>
+
+
+<script>
+    function cancelConfirmation(){
+        var cancel = confirm("Your order may be confirmed soon. Do you wish to cancel your order?");
+        if(cancel == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+
+
+
+<%- include("./partials/footer")  %> 

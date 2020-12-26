@@ -32,7 +32,7 @@ router.post("/checkout", async (req, res) => {
     console.log("REQ SESSION CURRENT USER IN CHECKOUT:" + req.session.currentUser);
     var cart = new Cart(req.session.cart);
 
-    //Store which the sells the items in the cart
+    //Store which sells the items in the cart
     var store = await Store.findById(req.session.cartStoreId);
   
     var order = new Order({
@@ -58,12 +58,13 @@ router.post("/checkout", async (req, res) => {
 })
 
 router.get("/orders/:id", (req, res) => {
-    Order.find({customer: req.params.id}).populate("store").exec((err, customerOrders) => {
+    //Get orders from an customer sorted by latest datetime
+    Order.find({customer: req.params.id}).populate("store").sort({createdAt: -1}).exec((err, customerOrders) => {
         if(err){
             console.log(err);
         }
         else{
-            res.render("order.ejs", {customerOrders: customerOrders});
+            res.render("order", {customerOrders: customerOrders});
         }
     })
 

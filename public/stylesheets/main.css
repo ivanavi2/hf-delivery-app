@@ -266,3 +266,15 @@ a.navbar-brand{
 .payment-option {
     border: 1px solid #dbe2ef;
 }
+
+table .notification-table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #dbe2ef;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f7f7;
+  }

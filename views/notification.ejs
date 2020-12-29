@@ -9,15 +9,20 @@
         <table class="notification-table table-hover table">
             <tr>
                 <th>Order ID</th>
-                <th>Restaurant Name</th>
+                <% if (role === "customerLocal") { %>
+                    <th>Restaurant Name</th>
+                <% } %>
                 <th>Food list</th>
+                <th>Time</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
-            <% customerOrders.forEach(order => { %>
+            <% orders.forEach(order => { %>
             <tr>
                 <td><%= order._id %></td>
-                <td><%= order.store.name %> </td>
+                <% if (role === "customerLocal") { %>
+                    <td><%= order.store.name %> </td>
+                <% } %>
                 <td>
                     <% var i = 1; %> 
                     <% order.items.forEach(item => { %>
@@ -26,30 +31,45 @@
                     <% }) %>
                 </td>
                 <td>
+                    <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', minute:'numeric'}).format(order.createdAt) %>
+                </td>
+                <td>
                     <% if (order.isConfirmed === true) { %>
                         <p>Your order is confirmed</p> 
                     <% } else if (order.isCancelled === true) { %>
                         <p>Your order is cancelled</p>
                     <% } else { %>
-                        <p>Your order is pending confirmation</p>
+                        <p>Order is pending confirmation</p>
                     <% } %>
                 </td>
                 <td>
-                    <form action="/notification/<%= order._id %>/cancel " method="POST">
-                        <!--Disable cancel order button is order is already cancelled-->
-                        <% if (order.isCancelled === true) { %>
-                            <button class="custom-btn py-1 px-2" disabled>Cancel order</button>
-                        <% } else { %>
-                        <button onclick="return cancelConfirmation()" class="custom-btn py-1 px-2">Cancel order</button>
-                        <% } %>
-                    </form>
+                    <% if (role === "customerLocal") { %>
+                        <form action="/notification/<%= order._id %>/cancel " method="POST">
+                            <!--Disable cancel order button is order is already cancelled-->
+                            <% if (order.isCancelled === true) { %>
+                                <button class="custom-btn py-1 px-2" disabled>Cancel order</button>
+                            <% } else { %>
+                            <button onclick="return cancelConfirmation()" class="custom-btn py-1 px-2">Cancel order</button>
+                            <% } %>
+                        </form>                    
+
+                    <% } else { %>
+                        <form action="/notification/<%= order._id %>/accept " method="POST">
+                            <!--Disable accept order button is order is already accepted -->
+                            <% if (order.isConfirmed === true) { %>
+                                <button class="custom-btn py-1 px-2" disabled>Accept order</button>
+                            <% } else { %>
+                            <button class="custom-btn py-1 px-2">Accept order</button>
+                            <% } %>
+                        </form>    
+                    <% } %>
+                     
+
                 </td>
             </tr>
             <% }) %>
-
         </table>
     </div>
-
 </div>
 
 

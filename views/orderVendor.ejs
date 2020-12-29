@@ -1,0 +1,56 @@
+<%- include("./partials/header")  %> 
+
+
+<div class="container-fluid p-3">
+  <div class="hero-text mb-5">
+      <h1 class="">Customer orders</h1>
+  </div>  
+
+  <div class="container table-responsive-md">
+      <table class="notification-table table-hover table">
+          <tr>
+              <th>Customer</th>
+              <th>Order ID</th>
+              <th>Food list</th>
+              <th>Time</th>
+              <th>Order total</th>
+          </tr>
+          <% vendorOrders.forEach(order => { %>
+          <tr>
+              <td>
+                <p><%= order.customer.username %></p>
+                <p>PhoneNum: <%= order.customer.phone %> </p>
+              </td>
+              <td><%= order._id %> </td>
+              <td>
+                  <% var i = 1; %> 
+                  <% order.items.forEach(item => { %>
+                      <p><%= i %>. <%= item.name %> x<%= item.qty %></p>
+                      <% i++ %> 
+                  <% }) %>
+              </td>
+              <td>
+                  <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', minute:'numeric'}).format(order.createdAt) %>
+              </td>
+              <td>
+                <% var orderTotalPrice = parseFloat(order.totalPrice).toFixed(2);%>    
+                RM<%= orderTotalPrice %> 
+              </td>
+          </tr>
+          <% }) %>
+      </table>
+  </div>
+</div>
+
+   
+  
+
+
+
+
+
+
+
+
+
+<%- include("./partials/footer")  %> 

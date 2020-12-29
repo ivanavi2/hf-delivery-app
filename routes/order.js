@@ -3,9 +3,7 @@ const router = express.Router();
 const Store = require("../models/store");
 const Cart = require("../models/cart");
 const Order = require("../models/order");
-const middlewareObj = require('../middleware');
-const { collection } = require("../models/store");
-const order = require("../models/order");
+const Vendor = require("../models/vendor");
 
 
 ///////////////////CHECKOUT FROM CART////////////////////////////
@@ -58,21 +56,39 @@ router.post("/checkout", async (req, res) => {
     req.session.cartStoreId = null;
 })
 
-router.get("/orders/:id", (req, res) => {
+router.get("/orders/:id", async (req, res) => {
     //Get orders from an customer sorted by latest datetime
-    Order.find({customer: req.params.id}).populate("store").sort({createdAt: -1}).exec((err, customerOrders) => {
+    if(req.session.strategy === "customerLocal"){
+      Order.find({customer: req.params.id}).populate("store").sort({createdAt: -1}).exec((err, customerOrders) => {
+          if(err){
+              console.log(err);
+          }
+          else{
+              res.render("orderCustomer", {customerOrders: customerOrders});
+          }
+      })      
+    }
+    else if(req.session.strategy === "vendorLocal"){
+      var vendor = await Vendor.findById(req.params.id);
+      var vendorStore = vendor.store;
+      Order.find({store: vendorStore}).populate("customer").sort({createdAt: -1}).exec((err, vendorOrders) =>{
         if(err){
-            console.log(err);
+          console.log(err);
         }
         else{
-            res.render("order", {customerOrders: customerOrders});
+          res.render("orderVendor", {vendorOrders: vendorOrders});
         }
-    })
+      })
+    }
+    else{
+      req.flash("error", "Error occured trying to view orders!");
+      res.redirect("/");
+    }
 
 
 })
   
-
+/* 
 router.get('/viewCustomerOrder', (req, res)=>
 {
   Order.find({}, (err, takeOrder) =>
@@ -82,11 +98,11 @@ router.get('/viewCustomerOrder', (req, res)=>
                 //res.redirect("/");
             }
             else{
-                res.render("viewCustomerOrder", {orders: takeOrder});
+                res.render("orderVendor", {orders: takeOrder});
             }
    })
 })
-
+ */
 
 
   

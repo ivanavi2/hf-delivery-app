@@ -47,11 +47,14 @@
                         <a class="nav-link" href="/chat">Chat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Rate.html">Notifications</a>
+                        <a class="nav-link" href="#">Notifications</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/orders/<%= currentUser._id %> ">Orders</a>
                     </li>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Rate">Rate Order</a>
+                    </li>
                 <%} else { %>
                     <li class="nav-item">
                         <a class="nav-link" href="/stores">Stores</a>
@@ -68,6 +71,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Orders</a>
                     </li>  
+                    
                 <% } %> 
             </ul>
             <ul class="navbar-nav ml-auto">

@@ -69,6 +69,12 @@ router.get("/orders/:id", (req, res) => {
 
 
 })
+
+router.get("/Rate", async (req, res) => {
+
+  res.render("Rate.ejs");
+
+})
   
   
   

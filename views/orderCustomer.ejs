@@ -13,14 +13,18 @@
         <div class="card" id="cart-card">
             <div class="card-body">
                 <div class="row justify-content-between">
-                    <div class="col-md-6 p-0">
+                    <div class="col-lg-6 p-0">
                         <h2 class="card-title mb-0"><%= order.store.name %> </h2> 
-                        <p class="card-text order-time ">Ordered at <strong><%= order.createdAt %></strong> </p>  
+                        <p class="card-text order-text-small mb-0">Ordered at <strong><%= order.createdAt %></strong> </p> 
+                        <p class="card-text order-text-small mb-2">Delivery address: <strong><%= order.deliveryBlockUnit %>, <%= order.deliveryAddress %></strong></p> 
                     </div>
-                    <div class="col-md-2 p-0">
+                    <div class="col-lg-3 p-0">
                         <a href="/chat/<%= order.store._id %>/<%= currentUser._id %>  ">
-                            <button class="custom-btn m-0 px-2"><i class="fas fa-comment-dots p-1"></i>Contact seller</button>
-                        </a>    
+                            <button class="custom-btn my-1 px-2"><i class="fas fa-comment-dots p-1"></i>Contact seller</button>
+                        </a>
+                        <a href="/orders/tracking/<%= order._id %> ">
+                            <button class="custom-btn my-1 px-2"><i class="fas fa-truck-moving p-1"></i>Track order</button>
+                        </a>
                     </div>
                 </div>
                 

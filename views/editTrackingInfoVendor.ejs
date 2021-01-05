@@ -1,0 +1,49 @@
+<%- include("./partials/header")  %> 
+
+
+<div class="container-fluid p-3">
+    <div class="hero-text mb-5">
+        <h1 class="">Update tracking info</h1>
+        <h4><%= foundOrder.customer.username %> </h4>
+        <h4>Order ID: <%= foundOrder._id %> </h4>
+        <h4>Ordered at: <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', minute:'numeric'}).format(foundOrder.createdAt) %></h4>
+        <a href="/orders/<%= currentUser._id %> ">Back to orders </a>
+    </div>  
+
+    <div class="container table-responsive-md">
+        <table class="notification-table table-hover table">
+            <tr>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>
+                    <% if (foundOrder.isDelivered == "false") { %>
+                        <p>No status yet</p>
+                    <% } else { %>
+                        <p id="tracking-status"><%= foundOrder.isDelivered %></p>
+                    <% } %>
+                </td>
+                <td>
+                    <form action="" method="POST">
+                        <input type="radio" name="status" id="preparing" value="preparing">
+                        <label class="mr-3" for="preparing">Preparing</label>
+                        <input type="radio" name="status" id="packaging" value="packaging">
+                        <label class="mr-3" for="packaging">Packaging</label>
+                        <input type="radio" name="status" id="arriving" value="arriving">
+                        <label class="mr-3" for="arriving">Arriving</label>
+                        <input type="radio" name="status" id="delivered" value="delivered">
+                        <label class="mr-3" for="delivered">Delivered</label>
+                        <div>
+                            <button class="custom-btn" type="submit">Update</button>
+                        </div>
+
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+   
+<%- include("./partials/footer")  %> 

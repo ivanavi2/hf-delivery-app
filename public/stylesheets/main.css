@@ -228,7 +228,7 @@ a.navbar-brand{
     color: #112d4e !important;
 }
 
-.order-time {
+.order-text-small {
     font-size: 0.75rem;
 }
 
@@ -278,3 +278,12 @@ td, th {
 tr:nth-child(even) {
     background-color: #f9f7f7;
   }
+
+#tracking-status {
+    text-transform: capitalize;
+}
+
+.track-order-container {
+    background-color: #f9f7f7;
+    padding: 1.5rem;
+}

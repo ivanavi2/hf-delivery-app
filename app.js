@@ -27,7 +27,7 @@ const cartRoutes = require("./routes/cart"); */
 //process.env.DATABASEURL || "mongodb://localhost/appdev_test"  
 //Mongodb config
 //mongodb+srv://bizbuzbiz:ivantehteh1@cluster0.gumfa.mongodb.net/hf-delivery?retryWrites=true&w=majority
-mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/appdev_test", 
+mongoose.connect("mongodb://localhost/appdev_test" || process.env.DATABASEURL  , 
     {useNewUrlParser: true,
     useUnifiedTopology: true})
 .then(() => console.log("Connected to DB!"))    

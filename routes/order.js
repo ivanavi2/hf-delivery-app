@@ -105,18 +105,18 @@ router.get('/viewCustomerOrder', (req, res)=>
  */
 
 
-router.get("/Rate", (req, res) => {
-  Order.find({customer: req.params.id}).populate("store").exec((err, customerOrders) => {
-      if(err){
-          console.log(err);
-      }
-      else{
-          res.render("Rate.ejs", {customerOrders: customerOrders});
-      }
-  })
+// router.get("/Rate", (req, res) => {
+//   Order.find({customer: req.params.id}).populate("store").exec((err, customerOrders) => {
+//       if(err){
+//           console.log(err);
+//       }
+//       else{
+//           res.render("Rate.ejs", {customerOrders: customerOrders});
+//       }
+//   })
 
 
-})
+// })
 
   
   

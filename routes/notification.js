@@ -17,6 +17,7 @@ router.get("/notification", middlewareObj.isLoggedIn, async (req, res) => {
             }
         })
     }
+    
     else if(req.session.strategy === "vendorLocal"){
         var vendor = await Vendor.findById(req.session.currentUser._id);
         var vendorStore = vendor.store;

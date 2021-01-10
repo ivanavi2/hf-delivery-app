@@ -9,6 +9,7 @@
 
     <div class="container table-responsive-md">
       <table class="notification-table table-hover table">
+        
           <tr>
               <th>Restaurant Name</th>
               <th> Order ID</th>
@@ -18,14 +19,15 @@
           <% orders.forEach(order => { %>
           <tr>
               
-
-                <td><%= order.store.name %> </td>
+            <% var storeName = order.store.name  %>
+                <td><%= storeName %> </td>
               
               <td><%= order._id %></td>
             
               
               <td>
-               adf
+                <p id="demo"></p>
+
               </td>
               <td>
                 <div class="con">
@@ -33,53 +35,65 @@
                     <div class="text">Thanks for rating us!</div>
                     <!-- <div class="edit">EDIT</div> -->
                   </div>
-                  <div class="star-widget">
-                    <input type="radio" name="rate" id="rate-5">
-                    <label for="rate-5" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-4">
-                    <label for="rate-4" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-3">
-                    <label for="rate-3" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-2">
-                    <label for="rate-2" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-1">
-                    <label for="rate-1" class="fas fa-star"></label>
-                    <form action="#">
-                      <header></header>
-                      <!-- <div class="textarea">
-                        <textarea cols="30" name="descExperience" placeholder="Describe your experience.."></textarea>
-                      </div> -->
-                      <div class="btn">
-                        <button type="submit">Post</button>
-                      </div>
-                    </form>
+                  <form action="/landing" method="post">
+                    <div class="star-widget">
+                      <input type="radio" name="rate" value="1" id="rate-5">
+                      <label for="rate-5" class="fas fa-star"></label>
+                      <input type="radio" name="rate" value="2" id="rate-4">
+                      <label for="rate-4" class="fas fa-star"></label>
+                      <input type="radio" name="rate" value="3" id="rate-3">
+                      <label for="rate-3" class="fas fa-star"></label>
+                      <input type="radio" name="rate" value="4" id="rate-2">
+                      <label for="rate-2" class="fas fa-star"></label>
+                      <input type="radio" name="rate" value="5" id="rate-1">
+                      <label for="rate-1" class="fas fa-star"></label>
+                    </div>
+                  
+                    <!-- <input type="submit"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" value="Submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+                    <input type="submit" id="myP" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Rate">
+                  </form>
                   </div>
                 </div>
-                <script>
-                  const btn = document.querySelector("button");
-                  const post = document.querySelector(".post");
-                  const widget = document.querySelector(".star-widget");
-                  // const editBtn = document.querySelector(".edit");
-                  btn.onclick = ()=>{
-                    widget.style.display = "none";
-                    post.style.display = "block";
-                    // editBtn.onclick = ()=>{
-                    //   widget.style.display = "block";
-                    //   post.style.display = "none";
-                    // }
-                    return false;
-                  }
-                </script>
+              
 
               </td>
           </tr>
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button onclick="myFunction()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- MODAL ! -->
+
+
+
           <% }) %>
       </table>
   </div>
 </div>
 
 
+<!-- <script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Updated";
+  document.getElementById("myP").style.visibility = "hidden"; 
+}
 
+
+</script> -->
 
 
 

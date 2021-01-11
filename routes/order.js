@@ -12,7 +12,7 @@ const middlewareObj = require("../middleware");
 router.get("/checkout", async (req, res) => {
 
   var cart = new Cart(req.session.cart);
-
+8
   var cartStore = await Store.findById(req.session.cartStoreId);
 
   res.render('checkout', {
@@ -127,6 +127,19 @@ router.get("/orders/tracking/:order_id", middlewareObj.isLoggedIn, (req, res) =>
     res.render("showTrackingInfoCust", {foundOrder: foundOrder});
   })
 })
+
+// router.get("/Rate", (req, res) => {
+//   Order.find({customer: req.params.id}).populate("store").exec((err, customerOrders) => {
+//       if(err){
+//           console.log(err);
+//       }
+//       else{
+//           res.render("Rate.ejs", {customerOrders: customerOrders});
+//       }
+//   })
+
+
+// })
 
   
   

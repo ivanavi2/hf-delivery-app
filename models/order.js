@@ -39,6 +39,10 @@ const orderSchema = Schema({
     isCancelled: {
         type: Boolean,
         default: false,
+    },
+    isRated: {
+        type: Boolean,
+        default: false,
     }
 
 });

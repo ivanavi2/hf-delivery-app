@@ -19,7 +19,8 @@ const orderRoutes = require("./routes/order");
 const chatRoutes = require("./routes/chat");
 const vendorRoutes = require("./routes/vendor");
 const notificationRoutes = require("./routes/notification");
-const rate = require("./routes/rate");
+const rateRoutes = require("./routes/rate");
+
 
 
 /*
@@ -79,7 +80,8 @@ app.use(orderRoutes);
 app.use(chatRoutes);
 app.use(vendorRoutes);
 app.use(notificationRoutes);
-app.use(rate);
+app.use(rateRoutes);
+
 
 /* app.use(vendorRoutes);
 app.use(customerRoutes);

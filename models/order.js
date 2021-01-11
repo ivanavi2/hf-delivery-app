@@ -23,15 +23,13 @@ const orderSchema = Schema({
     ],
     totalQty: Number,
     totalPrice: Number,
-    address: String,
+    deliveryAddress: String,
+    deliveryBlockUnit: String,
     createdAt: {
         type: Date,
         default: Date.now,
     },
-    isDelivered: {
-        type: Boolean,
-        default: false,
-    },
+    isDelivered: String, //Status: preparing, packaging, arriving and delivered update from seller
     isConfirmed: {
         type: Boolean,
         default: false,

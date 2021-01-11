@@ -32,23 +32,52 @@
                 <label for="onlinebanking">Online Banking</label><br>
                 <input type="radio" name="payment" id="" value="cash">
                 <label for="cash">Cash</label><br>
-            </div>
-            <div class="total-payment mt-3">
-                <h4>Total Payment</h4>
-                <p>RM<%= totalPrice %> </p>
-            </div>
+            </div>            
+            
+            <!--Checkout form start-->
             <form action="/checkout" method="POST">
-                <button class="custom-btn">Place order</button>
+                <div class="mt-3">
+                    <h4>Total Payment</h4>
+                    <p>RM<%= totalPrice %> </p>
+                </div>
+                <div class="mt-3">
+                    <h4>Delivery address</h4>
+                    <input type="text" name="deliveryBlockUnit" id="" placeholder="Block number & unit" class="mb-2" style="width: 100%;">
+                    <input type="text" id="auto-complete" name="deliveryAddress" placeholder="Address" style="width: 100%;">
+                </div>
+                <button type="submit" class="custom-btn">Place order</button>
             </form>
-
+            <!--Checkout form end-->
         </div>
-
     </div>
 
 
+    <!--Google places api script-->
+    <script>
+        let autocomplete;
+        function initAutocomplete(){
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById("auto-complete"),
+                {
+                    types: ['address'],
+                    componentRestrictions: {'country': ['MY']}
+                }
+            );
+        
+            autocomplete.addListener('place_changed', onPlaceChanged);
+        }
 
+        function onPlaceChanged(){
+            var place = autocomplete.getPlace();
 
+            if(!place.geometry){
+                alert("Please enter a valid address");
+            }
 
- 
+        }
+    </script>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvaT3TucXF4BxdO2sphTZKYcU55mI19bo&libraries=places&callback=initAutocomplete">
+    </script>
 
 <%- include("./partials/footer")  %> 

@@ -29,28 +29,28 @@ router.get("/stores/:store_id/add/:product_id", middlewareObj.isLoggedInCustomer
     if(!req.session.cart){
         req.session.cartStoreId = req.params.store_id; 
     }
-    else{
-      if(req.session.cartStoreId = req.params.store_id);
+
+    if(req.session.cartStoreId != req.params.store_id){ 
+      console.log("IN ADD PRODUCT"+req.session.cartStoreId + "---------------" + req.params.store_id);
       req.flash("error", "Please complete current order first before ordering from another store!");
+      return res.redirect("/cart");        
+    }        
+
+    try {        
+      let foundStoreMatchingProduct = await Store.findOne(
+              {_id: req.params.store_id},
+              {'products': {$elemMatch: {'_id': req.params.product_id}}});
+      const product = foundStoreMatchingProduct.products[0];
+      /*console.log("product added to cart:" + product);*/        
+      cart.add(product);
+      req.session.cart = cart;
+      /*console.log("SESSION CART:" + cart.items[0]);
+      console.log("SESSION CART ITEMS:" + req.session.cart.items); */
       res.redirect("/cart");
     }
-
-    try {
-        let foundStoreMatchingProduct = await Store.findOne(
-                {_id: req.params.store_id},
-                {'products': {$elemMatch: {'_id': req.params.product_id}}});
-        const product = foundStoreMatchingProduct.products[0];
-        /*console.log("product added to cart:" + product);*/        
-        cart.add(product);
-        req.session.cart = cart;
-        /*console.log("SESSION CART:" + cart.items[0]);
-        console.log("SESSION CART ITEMS:" + req.session.cart.items); */
-        res.redirect("/cart");
-
-    }
     catch (error) {
-        console.log(error.message);
-        res.redirect("/customer/" + req.session.currentUser._id);
+      console.log(error.message);
+      return res.redirect("/customer/" + req.session.currentUser._id);
     }
 })
 

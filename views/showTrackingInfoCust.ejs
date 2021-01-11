@@ -1,0 +1,109 @@
+<%- include("./partials/header")  %> 
+
+
+<div class="container-fluid p-3">
+    <div class="hero-text mb-5">
+        <h1 class="">Track order</h1>
+        <h4><%= foundOrder.customer.username %> </h4>
+        <h4><b>Store name:</b>  <%= foundOrder.store.name %> </h4>
+        <h4><b>Order ID:</b>  <%= foundOrder._id %> </h4>
+        <h4><b>Ordered at:</b>  <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit', hour: 'numeric', minute:'numeric'}).format(foundOrder.createdAt) %></h4>
+    </div>  
+
+    <div class="container track-order-container" >
+        <!-- STATUS == PREPARING-->
+        <% if (foundOrder.isDelivered == "preparing") { %>
+            <div>
+                <h3><i class="fas fa-check-square m-1"></i>Preparing</h3>
+                <p>The restaurant is preparing your food</p>                
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Packaging</h3>
+                <p>Your food is being packaged and will be delivered soon</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Arriving</h3>
+                <p>Your food is on the way</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Delivered</h3>
+                <p>Your order has been delivered</p>  
+            </div>
+        <!-- STATUS == PACKAGING-->
+        <% } else if (foundOrder.isDelivered == "packaging") { %>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Preparing</h3>
+                <p>The restaurant is preparing your food</p>                
+            </div>
+            <div>
+                <h3><i class="fas fa-check-square m-1"></i>Packaging</h3>
+                <p>Your food is being packaged and will be delivered soon</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Arriving</h3>
+                <p>Your food is on the way</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Delivered</h3>
+                <p>Your order has been delivered</p>  
+            </div>    
+        <!-- STATUS == ARRIVING-->
+        <% } else if (foundOrder.isDelivered == "arriving") { %>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Preparing</h3>
+                <p>The restaurant is preparing your food</p>                
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Packaging</h3>
+                <p>Your food is being packaged and will be delivered soon</p>
+            </div>
+            <div>
+                <h3><i class="fas fa-check-square m-1"></i>Arriving</h3>
+                <p>Your food is on the way</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Delivered</h3>
+                <p>Your order has been delivered</p>  
+            </div> 
+        <!-- STATUS == DELIVERED-->
+        <% } else if (foundOrder.isDelivered == "delivered") { %>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Preparing</h3>
+                <p>The restaurant is preparing your food</p>                
+            </div>
+            <div>
+                <h3<i class="far fa-square m-1"></i>>Packaging</h3>
+                <p>Your food is being packaged and will be delivered soon</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Arriving</h3>
+                <p>Your food is on the way</p>
+            </div>
+            <div>
+                <h3><i class="fas fa-check-square m-1"></i>Delivered</h3>
+                <p>Your order has been delivered</p>  
+            </div>
+        <!-- NO STATUS YET! -->
+        <% } else { %>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Preparing</h3>
+                <p>The restaurant is preparing your food</p>                
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Packaging</h3>
+                <p>Your food is being packaged and will be delivered soon</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Arriving</h3>
+                <p>Your food is on the way</p>
+            </div>
+            <div>
+                <h3><i class="far fa-square m-1"></i>Delivered</h3>
+                <p>Your order has been delivered</p>  
+            </div>
+        <% } %>
+    </div>
+</div>
+
+   
+<%- include("./partials/footer")  %> 

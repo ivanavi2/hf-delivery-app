@@ -10,7 +10,7 @@ const Vendor = require("../models/vendor");
 router.get("/checkout", async (req, res) => {
 
   var cart = new Cart(req.session.cart);
-
+8
   var cartStore = await Store.findById(req.session.cartStoreId);
 
   res.render('checkout', {

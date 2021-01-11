@@ -7,9 +7,8 @@ const Rating = require("../models/rate");
 const middlewareObj = require('../middleware');
 const bodyParser = require('body-parser');
 const { urlencoded } = require("body-parser");
-const { db } = require("../models/rate");
 
-router.get("/Rate", middlewareObj.isLoggedIn, async (req, res) => {
+router.get("/Rate",(req, res) => {
     
         Order.find({customer: req.session.currentUser._id}).populate("store").sort({createdAt: -1}).exec((err, customerOrders) => {
             if(err){
@@ -19,13 +18,21 @@ router.get("/Rate", middlewareObj.isLoggedIn, async (req, res) => {
                 res.render("Rate", {orders: customerOrders});
             }
         })
-    
- 
 })
-router.post("/landing", (req, res) => {
+router.post("/Rate", (req, res) => {
     
-        console.log(req.body);
-    
+        console.log("Req.body " + req.body);
+        console.log("Req.body.rate " + [req.body.rate]);
+        // const rate = new Rating(req.body);
+
+
+        // rate.save()
+        // .then((result)=>{
+        //     res.redirect('/Rate');
+        // })
+        // .catch((err)=> {
+        //     console.log(err)
+        // })
 
 
 

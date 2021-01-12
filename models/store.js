@@ -10,8 +10,14 @@ var StoreSchema = new mongoose.Schema({
             image: String,
         }
     ],
-    rating: Number,
-    numReviews: Number,
+    rating: {
+        type: Number,
+        default: 0,
+    },
+    numRating: {
+        type: Number,
+        default: 0,
+    },
     image: String,
 })
 

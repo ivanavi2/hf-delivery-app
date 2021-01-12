@@ -4,7 +4,7 @@
 
 
     <div class="hero-text mb-5">
-        <h1 class="">Rate Order</h1>
+        <h1 class="">How's your order experience</h1>
     </div>  
 
     <div class="container table-responsive-md">
@@ -13,78 +13,50 @@
           <tr>
               <th>Restaurant Name</th>
               <th> Order ID</th>
-              <th>Status</th>
-              <th>Rate</th>
+              <th>Rate seller</th>
           </tr>
-          <% orders.forEach(order => { %>
           <tr>
-              
-            <% var storeName = order.store.name  %>
-                <td><%= storeName %> </td>
-              
-              <td><%= order._id %></td>
-            
-              
-              <td>
-                <p id="demo"></p>
-
-              </td>
-              <td>
-                <div class="con">
-                  <div class="post">
-                    <div class="text">Thanks for rating us!</div>
-                    <!-- <div class="edit">EDIT</div> -->
-                  </div>
-                  <form action="/Rate" method="post">
-                    <div class="star-widget">
-                      <input type="radio" name="rate" value="1" id="rate-5">1
-                      <!-- <label for="rate-5" class="fas fa-star"></label> -->
-                      <input type="radio" name="rate" value="2" id="rate-4">2
-                      <!-- <label for="rate-4" class="fas fa-star"></label> -->
-                      <input type="radio" name="rate" value="3" id="rate-3">3
-                      <!-- <label for="rate-3" class="fas fa-star"></label> -->
-                      <input type="radio" name="rate" value="4" id="rate-2">4
-                      <!-- <label for="rate-2" class="fas fa-star"></label> -->
-                      <input type="radio" name="rate" value="5" id="rate-1">5
-                      <!-- <label for="rate-1" class="fas fa-star"></label> -->
-                    </div>
-                  
-                    <!-- <input type="submit"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" value="Submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
-                    <input type="submit" id="myP" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Rate">
-                  </form>
-                  </div>
-                </div>
-              
-
-              </td>
-          </tr>
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button onclick="myFunction()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+            <% var storeName = foundOrder.store.name  %>
+            <td><%= storeName %> </td>
+            <td><%= foundOrder._id %></td>
+            <td>
+              <div class="row">
+                <form action="/orders/rate/<%= foundOrder._id %> " method="post">
+                  <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                </fieldset>
+                  <input type="submit" class="custom-btn ml-3" value="Rate">                  
+                </form>                
+              </div>
+              <div class="row">
+                  <p class="p-2" id="rate-text"></p>
+              </div>
+          </tr>      
+        </table>
   </div>
-</div> -->
-<!-- MODAL ! -->
 
 
-
-          <% }) %>
-      </table>
-  </div>
-</div>
-
+<script>
+  document.getElementById("star1").onclick = function() {
+    document.getElementById("rate-text").innerHTML = "Sucks big time - 1 star";
+  }
+  document.getElementById("star2").onclick = function() {
+    document.getElementById("rate-text").innerHTML = "Kinda bad - 2 stars";
+  }
+  document.getElementById("star3").onclick = function() {
+    document.getElementById("rate-text").innerHTML = "Meh - 3 stars";
+  }
+  document.getElementById("star4").onclick = function() {
+    document.getElementById("rate-text").innerHTML = "Pretty good - 4 stars";
+  }
+  document.getElementById("star5").onclick = function() {
+    document.getElementById("rate-text").innerHTML = "Awesome - 5 stars";
+  }
+</script>
 
 <!-- <script>
 function myFunction() {

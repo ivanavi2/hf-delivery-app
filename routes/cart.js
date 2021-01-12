@@ -6,7 +6,7 @@ const Order = require("../models/order");
 const middlewareObj = require('../middleware');
 
 //SHOW CART 
-router.get("/cart", (req, res) => {
+router.get("/cart", middlewareObj.isLoggedIn, (req, res) => {
     if (!req.session.cart) {
         return res.render('cart', {
           cartItems: null

@@ -18,13 +18,21 @@
                         <p class="card-text order-text-small mb-0">Ordered at <strong><%= order.createdAt %></strong> </p> 
                         <p class="card-text order-text-small mb-2">Delivery address: <strong><%= order.deliveryBlockUnit %>, <%= order.deliveryAddress %></strong></p> 
                     </div>
-                    <div class="col-lg-3 p-0">
+                    <div class="col-lg-4 p-0">
                         <a href="/chat/<%= order.store._id %>/<%= currentUser._id %>  ">
                             <button class="custom-btn my-1 px-2"><i class="fas fa-comment-dots p-1"></i>Contact seller</button>
                         </a>
                         <a href="/orders/tracking/<%= order._id %> ">
                             <button class="custom-btn my-1 px-2"><i class="fas fa-truck-moving p-1"></i>Track order</button>
                         </a>
+                        <!--Cannot rate again if the order is already rated-->
+                        <% if (order.isRated == true) { %>
+                            <button onclick="isRated()" class="custom-btn my-1 px-2" style="background-color: #3b3d42"><i class="fas fa-star-half-alt p-1"></i>Rate seller</button>
+                        <% } else { %>
+                            <a href="/orders/rate/<%= order._id %> ">
+                                <button class="custom-btn my-1 px-2"><i class="fas fa-star-half-alt p-1"></i>Rate seller</button>
+                            </a>                            
+                        <% } %>
                     </div>
                 </div>
                 
@@ -41,6 +49,12 @@
         </div>     
     <% }) %>
 <% } %> 
+
+<script>
+    function isRated() {
+        alert("You already rated the seller for this order :(");
+    }
+</script>
  
 
 <%- include("./partials/footer")  %> 

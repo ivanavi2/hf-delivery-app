@@ -28,7 +28,10 @@
                             </div>
                         </div>
                         <div class="float-right card-description">
-                            &#9733; &#9733; &#9733; &#9733; &#9734;  4 &#47; 5
+                            <% var rating = parseFloat(store.rating).toFixed(2) %> 
+                            <%= rating %><i class="fas fa-star p-1"></i>
+                            <p><%= store.numRating %> ratings </p>
+                            
                         </div>
                     </p>
               </div>

@@ -33,9 +33,6 @@
             <ul class="navbar-nav">
                 <% if (currentUser && role==="vendorLocal") { %>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Foodlist</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/vendor/<%= currentUser._id %> ">Menu</a>
                     </li>
                     <li class="nav-item">
@@ -63,26 +60,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/orders/<%= currentUser._id %> ">Orders</a>
                     </li>  
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Rate">Rate order</a>
-                    </li>
                 <%} else { %>
                     <li class="nav-item">
                         <a class="nav-link" href="/stores">Stores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cart">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/chat">Chat</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/notification">Notifications</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Orders</a>
-                    </li>  
-                    
+                    </li>                    
                 <% } %> 
             </ul>
             <ul class="navbar-nav ml-auto">

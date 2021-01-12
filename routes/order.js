@@ -113,7 +113,7 @@ router.get("/orders/updatetracking/:order_id", middlewareObj.isLoggedIn, (req, r
 //UPDATE TRACKING STATUS 
 router.post("/orders/updatetracking/:order_id", (req, res) => {
 
-  console.log("MY PROCESS ENV" + process.env.EMAILPASS);
+
   const transporter = nodemailer.createTransport({
     service: "Hotmail",
     auth: {

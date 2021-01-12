@@ -113,6 +113,7 @@ router.get("/orders/updatetracking/:order_id", middlewareObj.isLoggedIn, (req, r
 //UPDATE TRACKING STATUS 
 router.post("/orders/updatetracking/:order_id", (req, res) => {
 
+  console.log("MY PROCESS ENV" + process.env.EMAILPASS);
   const transporter = nodemailer.createTransport({
     service: "Hotmail",
     auth: {
@@ -135,7 +136,7 @@ router.post("/orders/updatetracking/:order_id", (req, res) => {
         var message = {
           from: "bizbuzbiz@hotmail.com",
           to: updatedOrder.customer.email,
-          subject: "Order accepted",
+          subject: "Order arriving",
           text: "Your order with order ID of " + updatedOrder._id + " has been delivered and will arrive shortly! Please be ready to receive your order :)",
         }
         transporter.sendMail(message, (err, info) => {

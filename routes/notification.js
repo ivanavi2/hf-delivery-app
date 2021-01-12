@@ -1,12 +1,10 @@
 const express = require("express"); 
 const router = express.Router();
 
+
 const Order = require("../models/order");
 const Vendor = require("../models/vendor");
-
 const middlewareObj = require('../middleware');
-
-const nodemailer = require("nodemailer");
 
 router.get("/notification", middlewareObj.isLoggedIn, async (req, res) => {
     if(req.session.strategy === "customerLocal"){
@@ -38,7 +36,6 @@ router.get("/notification", middlewareObj.isLoggedIn, async (req, res) => {
     }
 })
 
-//CANCEL ORDER BY CUSTOMER
 router.post("/notification/:order_id/cancel", (req, res) => {
     Order.findByIdAndUpdate(
         req.params.order_id, 
@@ -50,40 +47,14 @@ router.post("/notification/:order_id/cancel", (req, res) => {
     )
 })
 
-//ACCEPT ORDERS BY SELLER
 router.post("/notification/:order_id/accept", (req, res) => {
-
-    //Create nodemailer transporter object
-    const transporter = nodemailer.createTransport({
-        service: "Hotmail",
-        auth: {
-            user: "bizbuzbiz@hotmail.com",
-            pass: "Ivanteholimauais1",
-        },
-    })
-
-    Order.findByIdAndUpdate(req.params.order_id, {isConfirmed: true})
-    .populate("customer")
-    .exec((err, updatedOrder) => {
-        //Send email using nodemailer
-        var message = {
-            from: "bizbuzbiz@hotmail.com",
-            to: updatedOrder.customer.email,
-            subject: "Order accepted",
-            text: "Your order with order ID of " + updatedOrder._id + " has been accepted and while be delivered shortly!",
+    Order.findByIdAndUpdate(
+        req.params.order_id, 
+        {isConfirmed: true},
+        (err, updatedOrder) => {
+            req.flash("success", "Order accepted");
+            res.redirect("/notification");
         }
-        transporter.sendMail(message, (err, info) => {
-            if(err){
-                console.log(err);
-            }
-            else{
-                console.log("Email sent");
-            }
-        })
-
-        req.flash("success", "Order accepted");
-        res.redirect("/notification");
-    }
     )
 })
 

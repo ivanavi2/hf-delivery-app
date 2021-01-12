@@ -1,11 +1,15 @@
 const express = require("express"); 
 const router = express.Router();
+
 const Store = require("../models/store");
 const Cart = require("../models/cart");
 const Order = require("../models/order");
 const Vendor = require("../models/vendor");
 
 const middlewareObj = require("../middleware");
+
+const nodemailer = require("nodemailer");
+
 
 
 ///////////////////CHECKOUT FROM CART////////////////////////////
@@ -106,14 +110,44 @@ router.get("/orders/updatetracking/:order_id", middlewareObj.isLoggedIn, (req, r
   })
 })
 
+//UPDATE TRACKING STATUS 
 router.post("/orders/updatetracking/:order_id", (req, res) => {
-  Order.findByIdAndUpdate(req.params.order_id, {isDelivered: req.body.status}, (err, updatedOrder) => {
+
+  const transporter = nodemailer.createTransport({
+    service: "Hotmail",
+    auth: {
+        user: "bizbuzbiz@hotmail.com",
+        pass: process.env.EMAILPASSWORD,
+    },
+  })
+
+  Order.findByIdAndUpdate(req.params.order_id, {isDelivered: req.body.status})
+  .populate("customer")
+  .exec((err, updatedOrder) => {
     if(err){
       console.log(err);
       req.flash("error", "Status update failed");
       res.redirect("back");
     }
     else{
+      //If tracking status is succesfully updated to arriving, send email to customer
+      if(req.body.status == "arriving"){
+        var message = {
+          from: "bizbuzbiz@hotmail.com",
+          to: updatedOrder.customer.email,
+          subject: "Order accepted",
+          text: "Your order with order ID of " + updatedOrder._id + " has been delivered and will arrive shortly! Please be ready to receive your order :)",
+        }
+        transporter.sendMail(message, (err, info) => {
+          if(err){
+              console.log(err);
+          }
+          else{
+              console.log("Email sent");
+          }
+        })
+      }
+
       res.redirect("back");
     }
   })
@@ -127,19 +161,6 @@ router.get("/orders/tracking/:order_id", middlewareObj.isLoggedIn, (req, res) =>
     res.render("showTrackingInfoCust", {foundOrder: foundOrder});
   })
 })
-
-// router.get("/Rate", (req, res) => {
-//   Order.find({customer: req.params.id}).populate("store").exec((err, customerOrders) => {
-//       if(err){
-//           console.log(err);
-//       }
-//       else{
-//           res.render("Rate.ejs", {customerOrders: customerOrders});
-//       }
-//   })
-
-
-// })
 
   
   

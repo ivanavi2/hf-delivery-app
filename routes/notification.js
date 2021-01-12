@@ -58,7 +58,7 @@ router.post("/notification/:order_id/accept", (req, res) => {
         service: "Hotmail",
         auth: {
             user: "bizbuzbiz@hotmail.com",
-            pass: "Ivanteholimauais1",
+            pass: process.env.EMAILPASSWORD,
         },
     })
 

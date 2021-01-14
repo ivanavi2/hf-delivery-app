@@ -28,4 +28,20 @@ router.get("/stores/:store_id", (req, res) => {
     })
 })
 
+//SHOW ROUTE - SHOW SEARCH STORE
+router.get("/search"), (req, res) => {
+    const { term }  = req.query;
+    Store.findAll({ where: { name: { [Op.like]: '%' + term + '%' } } }, (err, searchStore) => {
+        if (err) {
+            console.log(err);
+            res.redirect("/");
+        } else {
+            res.render("stores", { stores: searchStore });
+        }
+
+
+    });
+
+}
+
 module.exports = router;

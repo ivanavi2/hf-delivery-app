@@ -1,6 +1,8 @@
 const express = require("express"); 
 const router = express.Router();
 const Store = require("../models/store");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 //Store routes (customer view)
 //INDEX ROUTES - SHOW ALL STORES

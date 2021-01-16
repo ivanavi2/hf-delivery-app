@@ -4,10 +4,10 @@
     <div class="hero-text mb-3">
         <h1 class="hero-text">Available stores here!</h1>
     </div>
-    <form class="example" action="">
-        <input type="text" placeholder=" Selangor"  name="search" style="width: 215px;">
+    <form class="example" action="/search" method="GET">
+        <input type="text" placeholder="Search store names"  name="storeName" style="width: 215px;">
         <div>
-            <button type="button" class="custom-btn my-1" name="submitBtn" ><i class="fa fa-search" style="color: #f9f7f7;"></i>Find food near you</button>
+            <button type="submit" class="custom-btn my-1"><i class="fa fa-search" style="color: #f9f7f7;"></i>Find food near you</button>
         </div>
   </form> 
 </div>
@@ -23,9 +23,6 @@
                         <h5 class="card-title"><%= store.name %></h5>
                         <div class="float-left">
                             <p class="mb-0 card-description">From RM8</p>
-                            <div>
-                                <p class="card-description">40km</p>
-                            </div>
                         </div>
                         <div class="float-right card-description">
                             <% var rating = parseFloat(store.rating).toFixed(2) %> 

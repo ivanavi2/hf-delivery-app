@@ -1,0 +1,59 @@
+<%- include("./partials/header")  %> 
+
+<% if (foundStores.length == 0) { %>
+    <div class="container-fluid p-3" style="background-color: #f9f7f7;">
+        <div class="hero-text mb-3">
+            <h1 class="hero-text">Can't find such stores :(</h1>
+        </div>
+        <form class="example" action="/search" method="GET">
+            <input type="text" placeholder="Search store names"  name="storeName" style="width: 215px;">
+            <div>
+                <button type="submit" class="custom-btn my-1"><i class="fa fa-search" style="color: #f9f7f7;"></i>Find food near you</button>
+            </div>
+    </form> 
+    </div> 
+<% } else { %>
+    <div class="container-fluid p-3" style="background-color: #f9f7f7;">
+        <div class="hero-text mb-3">
+            <h1 class="hero-text">Search results</h1>
+        </div>
+        <form class="example" action="/search" method="GET">
+            <input type="text" placeholder="Search store names"  name="storeName" style="width: 215px;">
+            <div>
+                <button type="submit" class="custom-btn my-1"><i class="fa fa-search" style="color: #f9f7f7;"></i>Find food near you</button>
+            </div>
+        </form> 
+    </div>
+    <div class="container-fluid mt-3">        
+        <div class="row">
+        <% foundStores.forEach(store => { %>
+            <div class="col-lg-3 mb-4">
+                <div class="card"> 
+                    <a href="/stores/<%= store._id %> "><img src="<%= store.image %> " class="card-img-top" alt="store image"></a>
+                    <div class="card-body p-1">
+                        <p class="card-text" >
+                            <h5 class="card-title"><%= store.name %></h5>
+                            <div class="float-left">
+                                <p class="mb-0 card-description">From RM8</p>
+                            </div>
+                            <div class="float-right card-description">
+                                <% var rating = parseFloat(store.rating).toFixed(2) %> 
+                                <%= rating %><i class="fas fa-star p-1"></i>
+                                <p><%= store.numRating %> ratings </p>
+                                
+                            </div>
+                        </p>
+                </div>
+                <div class="card-footer p-2">               
+                    <a href="/stores/<%= store._id %> "><button type="button" class="custom-btn m-0">View</button></a>
+                </div>
+                </div>
+            </div>
+        <% }) %>         
+<% } %>     
+   
+    </div>
+</div>
+
+ 
+<%- include("./partials/footer")  %> 

@@ -21,4 +21,6 @@ var StoreSchema = new mongoose.Schema({
     image: String,
 })
 
+StoreSchema.indexes({"name": "text"});
+
 module.exports = mongoose.model("Store", StoreSchema);

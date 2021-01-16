@@ -28,4 +28,24 @@ router.get("/stores/:store_id", (req, res) => {
     })
 })
 
+//SEARCH STORE BY STORE NAME
+router.get("/search", (req, res) => {
+    Store.find(
+        {$text: {$search: req.query.storeName}},
+        {score: {$meta: "textScore"}},)
+    .sort({score: {$meta: "textScore"}})
+    .exec((err, foundStores) => {
+        if(err){
+            req.flash("error", "Error in searching stores!");
+            console.log(req.query.storeName);
+            res.redirect("/stores")
+        }
+        else{
+            console.log(req.query.storeName);
+            console.log(foundStores);
+            res.render("storeSearchResult", {foundStores: foundStores});
+        }
+    })
+})
+
 module.exports = router;

@@ -19,6 +19,7 @@ var StoreSchema = new mongoose.Schema({
         default: 0,
     },
     image: String,
+    address: String,
 })
 
 StoreSchema.indexes({"name": "text"});

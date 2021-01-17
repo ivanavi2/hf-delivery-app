@@ -59,7 +59,7 @@ router.get("/vendor/:id/store/:store_id/editstore", (req, res) => {
 
 router.post("/vendor/:id/store/:store_id/editstore", async (req, res) => {
     var store = await Store.findById(req.params.store_id);
-    store.update({name: req.body.name, image: req.body.image}, (err, updatedStore) => {
+    store.update({name: req.body.name, image: req.body.image, address: req.body.address}, (err, updatedStore) => {
         if(err){
             console.log(err);
         }

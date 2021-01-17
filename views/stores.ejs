@@ -15,21 +15,23 @@
 <div class="container-fluid mt-3">
     <div class="row">
     <% stores.forEach(store => { %>
-        <div class="col-lg-3 mb-4">
+        <div class="col-lg-4 mb-4">
             <div class="card"> 
                 <a href="/stores/<%= store._id %> "><img src="<%= store.image %> " class="card-img-top" alt="store image"></a>
                 <div class="card-body p-1">
                     <p class="card-text" >
                         <h5 class="card-title"><%= store.name %></h5>
-                        <div class="float-left">
-                            <p class="mb-0 card-description">From RM8</p>
+                        <div class="row justify-content-between">
+                            <div class="col-8 p-0">
+                                <p class="mb-0 card-description"><%= store.address %> </p>
+                            </div>
+                            <div class="col-4 text-right">
+                                <% var rating = parseFloat(store.rating).toFixed(2) %> 
+                                <p class="m-0 card-description"><%= rating %><i class="fas fa-star p-1"></i></p>
+                                <p class="m-0 card-description"><%= store.numRating %> ratings </p>
+                            </div>                            
                         </div>
-                        <div class="float-right card-description">
-                            <% var rating = parseFloat(store.rating).toFixed(2) %> 
-                            <%= rating %><i class="fas fa-star p-1"></i>
-                            <p><%= store.numRating %> ratings </p>
-                            
-                        </div>
+
                     </p>
               </div>
               <div class="card-footer p-2">               

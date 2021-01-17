@@ -30,7 +30,7 @@ const cartRoutes = require("./routes/cart"); */
 //"mongodb://localhost/appdev_test" || process.env.DATABASEURL
 //process.env.DATABASEURL || "mongodb://localhost/appdev_test"  
 //Mongodb config
-mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/appdev_test", 
+mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/appdev_test" , 
     {useNewUrlParser: true,
     useUnifiedTopology: true})
 .then(() => console.log("Connected to DB!"))    

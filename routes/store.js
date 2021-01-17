@@ -37,6 +37,7 @@ router.get("/search", (req, res) => {
     .exec((err, foundStores) => {
         if(err){
             req.flash("error", "Error in searching stores!");
+            console.log(err);
             console.log(req.query.storeName);
             res.redirect("/stores")
         }

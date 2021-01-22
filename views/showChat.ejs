@@ -27,7 +27,12 @@
             </div>
             <div class="col-md-7 chat-container">
                 <div class="chat-header d-flex justify-content-between p-2">
-                    <h4>Burger store</h4>
+                    <% if (role === "customerLocal") { %>
+                        <h4><%= chat.store.name %></h4>  
+                    <% } else { %>
+                        <h4><%= chat.customer.username %></h4>                      
+                    <% } %>
+
                     <h4>Chat</h4>
                     <h4><i class="fas fa-window-close"></i></h4>
                 </div>

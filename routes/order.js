@@ -118,7 +118,7 @@ router.post("/orders/updatetracking/:order_id", (req, res) => {
     service: "Hotmail",
     auth: {
         user: "bizbuzbiz@hotmail.com",
-        pass: process.env.EMAILPASSWORD,
+        pass: "Ivanteholimauais1",
     },
   })
 

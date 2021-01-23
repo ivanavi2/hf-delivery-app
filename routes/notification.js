@@ -55,10 +55,10 @@ router.post("/notification/:order_id/accept", (req, res) => {
 
     //Create nodemailer transporter object
     const transporter = nodemailer.createTransport({
-        service: "Hotmail",
+        service: "gmail",
         auth: {
-            user: "bizbuzbiz@hotmail.com",
-            pass: "Ivanteholimauais1",
+            user: "guang@graduate.utm.my",
+            pass: "ivantehteh1",
         },
     })
 

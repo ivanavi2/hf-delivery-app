@@ -115,10 +115,10 @@ router.post("/orders/updatetracking/:order_id", (req, res) => {
 
 
   const transporter = nodemailer.createTransport({
-    service: "Hotmail",
+    service: "gmail",
     auth: {
-        user: "bizbuzbiz@hotmail.com",
-        pass: "Ivanteholimauais1",
+      user: "guang@graduate.utm.my",
+      pass: "ivantehteh1",
     },
   })
 
